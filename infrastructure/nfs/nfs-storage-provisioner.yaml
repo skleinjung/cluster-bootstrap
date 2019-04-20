@@ -2,6 +2,7 @@ kind: ServiceAccount
 apiVersion: v1
 metadata:
   name: nfs-provisioner-service-account
+  namespace: nfs
 ---
 kind: Service
 apiVersion: v1
