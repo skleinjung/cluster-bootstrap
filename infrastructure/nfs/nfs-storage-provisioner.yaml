@@ -1,0 +1,63 @@
+kind: ServiceAccount
+apiVersion: v1
+metadata:
+  name: nfs-provisioner-service-account
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nfs-provisioner-service
+  namespace: nfs
+  labels:
+    app: nfs-provisioner
+spec:
+  ports:
+    - name: nfs
+      port: 2049
+    - name: mountd
+      port: 20048
+    - name: rpcbind
+      port: 111
+    - name: rpcbind-udp
+      port: 111
+      protocol: UDP
+  selector:
+    app: nfs-provisioner
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: nfs-provisioner
+  namespace: nfs
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: nfs-provisioner
+    spec:
+      serviceAccountName: nfs-provisioner-service-account
+      containers:
+        - name: nfs-provisioner
+          image: quay.io/external_storage/nfs-client-provisioner:v3.1.0-k8s1.11
+          volumeMounts:
+            - name: nfs-storage-root
+              mountPath: /persistentvolumes
+          env:
+            - name: PROVISIONER_NAME
+              value: nfs-storage-provisioner
+            - name: NFS_SERVER
+              value: thrashplay-nfs-server-vm.us-central1-a.c.shard-232101.internal
+            - name: NFS_PATH
+              value: /var/nfs
+          resources:
+            requests:
+              cpu: 10m
+              memory: 100Mi
+      volumes:
+        - name: nfs-storage-root
+          nfs:
+            server: nfs-server-service.nfs.svc.cluster.local
+            path: /var/nfs
