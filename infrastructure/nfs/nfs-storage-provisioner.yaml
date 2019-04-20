@@ -52,7 +52,7 @@ spec:
             - name: NFS_SERVER
               value: thrashplay-nfs-server-vm.us-central1-a.c.shard-232101.internal
             - name: NFS_PATH
-              value: /var/nfs
+              value: /data
           resources:
             requests:
               cpu: 10m
@@ -61,4 +61,4 @@ spec:
         - name: nfs-storage-root
           nfs:
             server: nfs-server-service.nfs.svc.cluster.local
-            path: /var/nfs
+            path: /data
