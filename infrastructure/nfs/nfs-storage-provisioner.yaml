@@ -50,7 +50,7 @@ spec:
             - name: PROVISIONER_NAME
               value: nfs-storage-provisioner
             - name: NFS_SERVER
-              value: thrashplay-nfs-server-vm.us-central1-a.c.shard-232101.internal
+              value: nfs-server-service.nfs.svc.cluster.local
             - name: NFS_PATH
               value: /data
           resources:
