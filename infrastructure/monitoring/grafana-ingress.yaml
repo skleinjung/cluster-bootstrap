@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: grafana-ingress
+  namespace: monitoring
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx/proxy-body-size: 10m
+  labels:
+    app: grafana
+spec:
+  rules:
+  - host: grafana.ops.thrashplay.com
+    http:
+      paths:
+      - backend:
+          serviceName: grafana-service
+          servicePort: http-port

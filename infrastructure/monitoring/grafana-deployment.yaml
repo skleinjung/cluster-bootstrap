@@ -1,0 +1,75 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    name: grafana
+  name: grafana
+  namespace: monitoring
+  annotations:
+    flux.weave.works/automated: "true"
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: grafana
+      annotations:
+        prometheus.io/scrape: "true"
+    spec:
+      securityContext:
+        fsGroup: 65534
+        runAsUser: 65534
+        runAsNonRoot: true
+      containers:
+        - image: grafana/grafana
+          imagePullPolicy: IfNotPresent
+          name: grafana
+          envFrom:
+            - secretRef:
+                name: grafana-credentials
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 500m
+              memory: 2500Mi
+            requests:
+              cpu: 50m
+              memory: 100Mi
+          volumeMounts:
+            - mountPath: /var/lib/grafana
+              name: data
+            - mountPath: /etc/grafana/provisioning/datasources/prometheus-datasource.yml
+              name: grafana-config
+              readOnly: true
+              subPath: prometheus-data-source.yml
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - emptyDir: {}
+          name: data
+        - configMap:
+            name: grafana-config
+          name: grafana-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana-service
+  namespace: monitoring
+spec:
+  selector:
+    app: grafana
+  type: NodePort
+  ports:
+    - name: http-port
+      protocol: TCP
+      port: 30001
+      targetPort: http

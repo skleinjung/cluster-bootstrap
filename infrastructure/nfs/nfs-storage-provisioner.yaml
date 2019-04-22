@@ -30,6 +30,8 @@ apiVersion: extensions/v1beta1
 metadata:
   name: nfs-provisioner
   namespace: nfs
+  annotations:
+    flux.weave.works/automated: "true"
 spec:
   replicas: 1
   strategy:
