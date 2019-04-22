@@ -18,3 +18,15 @@ data:
       isDefault: true
       version: 1
       editable: false
+
+  dashboards-provider.yml: |-
+    apiVersion: 1
+    providers:
+    - name: 'default'
+      orgId: 1
+      folder: ''
+      type: file
+      disableDeletion: false
+      updateIntervalSeconds: 3600 #how often Grafana will scan for changed dashboards
+      options:
+        path: /etc/grafana/provisioned-dashboards

@@ -50,6 +50,22 @@ spec:
               name: grafana-config
               readOnly: true
               subPath: prometheus-data-source.yml
+            - mountPath: /etc/grafana/provisioning/dashboards/dashboards-provider.yml
+              name: grafana-config
+              readOnly: true
+              subPath: dashboards-provider.yml
+            - mountPath: /etc/grafana/provisioned-dashboards/315-kubernetes-cluster-monitoring-via-prometheus.json
+              name: grafana-dashboards
+              readOnly: true
+              subPath: 315-kubernetes-cluster-monitoring-via-prometheus.json
+            - mountPath: /etc/grafana/provisioned-dashboards/3146-kubernetes-pods.json
+              name: grafana-dashboards
+              readOnly: true
+              subPath: 3146-kubernetes-pods.json
+            - mountPath: /etc/grafana/provisioned-dashboards/6417-kubernetes-cluster-prometheus.json
+              name: grafana-dashboards
+              readOnly: true
+              subPath: 6417-kubernetes-cluster-prometheus.json
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
       volumes:
