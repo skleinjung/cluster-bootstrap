@@ -4,7 +4,6 @@ metadata:
   name: grafana-dashboards
   labels:
     app: grafana
-    name: grafana-dashboards
   namespace: monitoring
 data:
   315-kubernetes-cluster-monitoring-via-prometheus.json: |-

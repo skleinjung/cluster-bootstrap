@@ -74,6 +74,9 @@ spec:
         - configMap:
             name: grafana-config
           name: grafana-config
+        - configMap:
+            name: grafana-dashboards
+          name: grafana-dashboards
 ---
 apiVersion: v1
 kind: Service

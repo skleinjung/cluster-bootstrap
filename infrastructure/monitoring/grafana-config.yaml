@@ -4,7 +4,6 @@ metadata:
   name: grafana-config
   labels:
     app: grafana
-    name: grafana-config
   namespace: monitoring
 data:
   prometheus-data-source.yml: |-
