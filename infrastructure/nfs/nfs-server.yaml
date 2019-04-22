@@ -26,10 +26,10 @@ spec:
           securityContext:
             privileged: true
           volumeMounts:
-            - mountPath: /data
-              name: data
+            - mountPath: /exports
+              name: exports
       volumes:
-        - name: data
+        - name: exports
           gcePersistentDisk:
             pdName: thrashplay-nfs-data
             fsType: ext4

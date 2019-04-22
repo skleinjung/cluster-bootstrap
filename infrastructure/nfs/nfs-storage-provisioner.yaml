@@ -52,7 +52,7 @@ spec:
             - name: NFS_SERVER
               value: nfs-server-service.nfs.svc.cluster.local
             - name: NFS_PATH
-              value: /data
+              value: /exports
           resources:
             requests:
               cpu: 10m
@@ -61,4 +61,4 @@ spec:
         - name: nfs-storage-root
           nfs:
             server: nfs-server-service.nfs.svc.cluster.local
-            path: /data
+            path: /exports
