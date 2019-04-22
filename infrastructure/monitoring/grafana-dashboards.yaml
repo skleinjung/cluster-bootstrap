@@ -45,7 +45,7 @@ data:
         }
       ],
       "id": null,
-      "uid": "https://grafana.com/dashboards/315",
+      "uid": "add99054-fea5-4511-9e6b-9c7674dc709e",
       "title": "Kubernetes cluster monitoring (via Prometheus)",
       "description": "Monitors Kubernetes cluster using Prometheus. Shows overall cluster CPU / Memory / Filesystem usage as well as individual pod, containers, systemd services statistics. Uses cAdvisor metrics only.",
       "tags": [
@@ -2127,7 +2127,7 @@ data:
       "gnetId": 3146,
       "hideControls": false,
       "id": null,
-      "uid": "https://grafana.com/dashboards/3146",
+      "uid": "0b345054-843c-4969-a718-7ccd75a52edc",
       "links": [],
       "rows": [
         {
@@ -5135,6 +5135,6 @@ data:
       },
       "timezone": "browser",
       "title": "Kubernetes Cluster (Prometheus)",
-      "uid": "https://grafana.com/dashboards/6417",
+      "uid": "9b6e93b7-fa57-4ad6-894d-542fb99e69769b6e93b7-fa57-4ad6-894d-542fb99e6976",
       "version": 1
     }
