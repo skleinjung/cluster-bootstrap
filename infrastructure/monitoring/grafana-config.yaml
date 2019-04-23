@@ -2589,7 +2589,7 @@ data:
           "datasource": "Prometheus",
           "format": "percentunit",
           "gauge": {
-            "maxValue": 100,
+            "maxValue": 1,
             "minValue": 0,
             "show": true,
             "thresholdLabels": false,
@@ -2644,7 +2644,7 @@ data:
               "refId": "A"
             }
           ],
-          "thresholds": "80,90",
+          "thresholds": "0.8,0.9",
           "title": "Cluster Pod Usage",
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -2669,7 +2669,7 @@ data:
           "datasource": "Prometheus",
           "format": "percentunit",
           "gauge": {
-            "maxValue": 100,
+            "maxValue": 1,
             "minValue": 0,
             "show": true,
             "thresholdLabels": false,
@@ -2724,7 +2724,7 @@ data:
               "refId": "A"
             }
           ],
-          "thresholds": "80,90",
+          "thresholds": "0.7,0.9",
           "title": "Cluster CPU Usage",
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -2749,7 +2749,7 @@ data:
           "datasource": "Prometheus",
           "format": "percentunit",
           "gauge": {
-            "maxValue": 100,
+            "maxValue": 1,
             "minValue": 0,
             "show": true,
             "thresholdLabels": false,
@@ -2804,7 +2804,7 @@ data:
               "refId": "A"
             }
           ],
-          "thresholds": "80,90",
+          "thresholds": "0.8,0.9",
           "title": "Cluster Memory Usage",
           "type": "singlestat",
           "valueFontSize": "80%",
@@ -2829,7 +2829,7 @@ data:
           "datasource": "Prometheus",
           "format": "percentunit",
           "gauge": {
-            "maxValue": 100,
+            "maxValue": 1,
             "minValue": 0,
             "show": true,
             "thresholdLabels": false,
@@ -2878,13 +2878,13 @@ data:
           "tableColumn": "",
           "targets": [
             {
-              "expr": "(sum (node_filesystem_size{nodename=~\"$node\"}) - sum (node_filesystem_free{nodename=~\"$node\"})) / sum (node_filesystem_size{nodename=~\"$node\"})",
+              "expr": "(sum(node_filesystem_free{mountpoint="/"}) by (node, mountpoint) / sum(node_filesystem_size{mountpoint="/"}) by (node, mountpoint))",
               "format": "time_series",
               "intervalFactor": 1,
               "refId": "A"
             }
           ],
-          "thresholds": "80,90",
+          "thresholds": "0.8,0.9",
           "title": "Cluster Disk Usage",
           "type": "singlestat",
           "valueFontSize": "80%",
