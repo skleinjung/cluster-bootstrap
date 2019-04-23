@@ -2878,7 +2878,7 @@ data:
           "tableColumn": "",
           "targets": [
             {
-              "expr": "(sum(node_filesystem_free{mountpoint="/"}) by (node, mountpoint) / sum(node_filesystem_size{mountpoint="/"}) by (node, mountpoint))",
+              "expr": "(sum(node_filesystem_free{mountpoint=\"/\"}) by (node, mountpoint) / sum(node_filesystem_size{mountpoint=\"/\"}) by (node, mountpoint))",
               "format": "time_series",
               "intervalFactor": 1,
               "refId": "A"

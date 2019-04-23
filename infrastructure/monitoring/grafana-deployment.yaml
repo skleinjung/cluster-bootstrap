@@ -20,7 +20,7 @@ spec:
         app: grafana
       annotations:
         prometheus.io/scrape: "true"
-        configHash: "5d0b9d7f0e66796aa430b3b1eacaa232c98d55d1"
+        configHash: "e9e03f32c31e585fc8ed7e2f46ce50139f4c13b6"
     spec:
       securityContext:
         fsGroup: 65534
