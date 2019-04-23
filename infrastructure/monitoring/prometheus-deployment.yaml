@@ -29,6 +29,7 @@ spec:
     metadata:
       annotations:
         prometheus.io/scrape: "true"
+        configHash: "efaed2320f145993719125d3879bdb3988243a6c"
       labels:
         app: prometheus
     spec:
