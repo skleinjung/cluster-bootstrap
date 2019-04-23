@@ -60,7 +60,7 @@ data:
       ],
       "id": null,
       "uid": "add99054-fea5-4511-9e6b-9c7674dc709e",
-      "title": "Kubernetes cluster monitoring (via Prometheus)",
+      "title": "Kubernetes - Resource Utilization",
       "description": "Monitors Kubernetes cluster using Prometheus. Shows overall cluster CPU / Memory / Filesystem usage as well as individual pod, containers, systemd services statistics. Uses cAdvisor metrics only.",
       "tags": [
         "kubernetes"
@@ -5128,7 +5128,7 @@ data:
         ]
       },
       "timezone": "browser",
-      "title": "Kubernetes Cluster (Prometheus)",
+      "title": "Kubernetes - Deployments and Resource Requests",
       "uid": "6ab0b461-06b4-4f9a-a74d-bca37f85bf74",
       "version": 1
     }
