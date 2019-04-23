@@ -2491,7 +2491,7 @@ data:
         ]
       },
       "timezone": "browser",
-      "title": "Kubernetes Pods",
+      "title": "Kubernetes - Pods",
       "version": 26,
       "description": "Kubernetes to monitor POD statistics"
     }
