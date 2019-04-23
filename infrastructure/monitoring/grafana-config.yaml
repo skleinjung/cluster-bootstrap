@@ -2638,7 +2638,7 @@ data:
           "tableColumn": "",
           "targets": [
             {
-              "expr": "sum(kube_pod_info{node=~\"$node\"}) / sum(kube_node_status_allocatable_pods{node=~\".*\"})",
+              "expr": "(sum(kube_pod_info{node=~\"$node\"}) / sum(kube_node_status_allocatable_pods{node=~\".*\"}))",
               "format": "time_series",
               "intervalFactor": 1,
               "refId": "A"
