@@ -110,7 +110,11 @@ spec:
         # to those under the following relative paths in the git repository
         - --git-path=workloads
 
-        # include these next two to connect to an "upstream" service
+        - --git-poll-interval=1m
+        - --registry-poll-interval=1m
+        - --sync-interval=3m
+
+          # include these next two to connect to an "upstream" service
         # (e.g., Weave Cloud). The token is particular to the service.
         # - --connect=wss://cloud.weave.works/api/flux
         # - --token=abc123abc123abc123abc123
