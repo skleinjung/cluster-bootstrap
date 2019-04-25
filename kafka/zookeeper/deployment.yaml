@@ -44,6 +44,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: zookeeper
+  namespace: kafka
 spec:
   selector:
     matchLabels:
