@@ -2,7 +2,7 @@ apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
   name: kube-state-metrics
-  namespace: kube-system
+  namespace: monitoring
   annotations:
     flux.weave.works/automated: "true"
     flux.weave.works/tag.chart-image: semver:~1.1
