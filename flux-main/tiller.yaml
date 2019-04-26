@@ -56,7 +56,7 @@ spec:
         - mountPath: /etc/certs
           name: tiller-certs
           readOnly: true
-      serviceAccountName: flux
+      serviceAccountName: tiller
       volumes:
       - name: tiller-certs
         secret:
