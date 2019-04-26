@@ -1,0 +1,20 @@
+---
+# Source: flux/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: flux
+  namespace: flux
+  labels:
+    app: flux
+    release: flux
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3030
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: flux
+    release: flux
