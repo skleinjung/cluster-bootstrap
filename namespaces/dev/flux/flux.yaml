@@ -13,53 +13,53 @@ spec:
     path: chart/flux
     ref: master
   values:
-    git.url=git@github.com:skleinjung/thrashplay-deployment
-    git.path=fake_path
-    git.pollInterval=1m
-    registry.pollInterval=1m
-    helmOperator.create=true
-    helmOperator.createCRD=false
-    helmOperator.git.pollInterval=3m
-    helmOperator.tillerNamespace=dev
-    helmOperator.allowNamespace=dev
-    helmOperator.tls.enable=true
-    helmOperator.tls.verify=true
-    helmOperator.tls.caContent= |-
+    git.url: git@github.com:skleinjung/thrashplay-deployment
+    git.path: fake_path
+    git.pollInterval: 1m
+    registry.pollInterval: 1m
+    helmOperator.create: true
+    helmOperator.createCRD: false
+    helmOperator.git.pollInterval: 3m
+    helmOperator.tillerNamespace: dev
+    helmOperator.allowNamespace: dev
+    helmOperator.tls.enable: true
+    helmOperator.tls.verify: true
+    helmOperator.tls.caContent:  |-
 -----BEGIN CERTIFICATE-----
-MIIFlzCCA3+gAwIBAgIUVdhgEscfFCkmRWjBL+a5DR8iFzkwDQYJKoZIhvcNAQEL
+MIIFlzCCA3+gAwIBAgIUJdfr1KNEUo4s/4d12o/NvVnqMPcwDQYJKoZIhvcNAQEL
 BQAwWzELMAkGA1UEBhMCVVMxEjAQBgNVBAgMCU1pbm5lc290YTEOMAwGA1UEBwwF
 RWFnYW4xEzARBgNVBAoMClRocmFzaHBsYXkxEzARBgNVBAMMCnRpbGxlci1kZXYw
-HhcNMTkwNTAxMjAxMzU4WhcNMzkwNDI2MjAxMzU4WjBbMQswCQYDVQQGEwJVUzES
+HhcNMTkwNTAxMjAzMDI4WhcNMzkwNDI2MjAzMDI4WjBbMQswCQYDVQQGEwJVUzES
 MBAGA1UECAwJTWlubmVzb3RhMQ4wDAYDVQQHDAVFYWdhbjETMBEGA1UECgwKVGhy
 YXNocGxheTETMBEGA1UEAwwKdGlsbGVyLWRldjCCAiIwDQYJKoZIhvcNAQEBBQAD
-ggIPADCCAgoCggIBAL9DGzbFIjqi8kcjgv4mEU1hRAQ82agv5mtljMbRLTjBjoD+
-KCDc/DjDjEvjAuhotoiYG8F6ip17pXcIw9p9EL1vEi+83elQWK5SwYJXEP072Wla
-73UdQHE5UmTFzIBb9BHMOv/tM19HtMaGw0sXdReGcScicIP2fQPAZtmvfxcg3zru
-c3Z0IQQmZfXg2uoZOBlyBowqjCifuHwBFBiciktUQ5nUXpZTVdORj8vHqUdakPMX
-wE33Ma+0HtzuSGh5jBASN4eXOUKAdVO0PljQv40+Ev8zLDPli9aL4ayhJULtw3u0
-7Gxt7/dpnAzcJteOF2rpkOQ7WYPS2OScbvgMDGPYGI0xFHLcZ3N2rx3QRIxaYUZ0
-g/Hl7Q3QZHK/bu0vW/s33Sd4HLZGeic2V4BWhThDxpa71tlqPBpNaWSvYhuVq3de
-xtQFBuKP/ZM7zXidwtS6SkpOx3W2XI6kv+6QOQXaDkkM56JEfD8bi7oIGR+68eA3
-7poMQPXX3RxCmmYeUJ1kPviK3tR6R7BrPWlNeXXARzlGEmvlVgKc+u/ZA8kpDXdq
-JKOkk/y7ztYidZuubN1jKFiASpCwK3NQItH72IdUIYnIYMjNfPzn9cVizXawQ7eu
-uBCjEQY4hPbkot5Ur2IEA70Fo/cP4GSyDrTE03SuZ2g4r9RSG2MdbjKRxqEBAgMB
-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
+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
 -----END CERTIFICATE-----
 
-    helmOperator.tls.hostname=tiller-dev
-    prometheus.enabled=true
-    rbac.create=false
-    serviceAccount.create=false
-    serviceAccount.name=flux-dev
+    helmOperator.tls.hostname: tiller-dev
+    prometheus.enabled: true
+    rbac.create: false
+    serviceAccount.create: false
+    serviceAccount.name: flux-dev

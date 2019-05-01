@@ -98,6 +98,7 @@ helm upgrade -i flux-bootstrap --namespace kube-system \
     --set helmOperator.tls.enable=true \
     --set helmOperator.tls.verify=true \
     --set helmOperator.tls.caContent="$(cat /tls/ca.cert.pem)" \
+    --set helmOperator.tls.hostname=${TILLER_COMMON_NAME} \
     --set prometheus.enabled=true \
     weaveworks/flux
 
