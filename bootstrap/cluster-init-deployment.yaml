@@ -23,7 +23,7 @@ spec:
           - name: GIT_URL
             value: git@github.com:skleinjung/thrashplay-deployment
           - name: GIT_PATH
-            value: does_not_exist
+            value: namespaces
       restartPolicy: Never
       serviceAccountName: bootstrap
   backoffLimit: 0

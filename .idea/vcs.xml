@@ -2,5 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/namespace-init/output/tmp/flux" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/namespace-init/tmp/flux" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/namespace-init/work/flux" vcs="Git" />
   </component>
 </project>

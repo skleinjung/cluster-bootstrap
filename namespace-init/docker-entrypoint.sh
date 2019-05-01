@@ -96,7 +96,7 @@ helm repo add weaveworks https://weaveworks.github.io/flux
 kubectl apply -f https://raw.githubusercontent.com/weaveworks/flux/master/deploy-helm/flux-helm-release-crd.yaml
 
 helm upgrade -i flux-bootstrap --namespace ${NAMESPACE} \
-    --tls --tls-verify --tls-hostname $TILLER_COMMON_NAME --tls-ca-cert /tls/ca.cert.pem --tls-cert /tls/helm.cert.pem --tls-key /tls/helm.key.pem \
+    --tls --tls-verify --tls-hostname ${TILLER_COMMON_NAME} --tls-ca-cert /tls/ca.cert.pem --tls-cert /tls/helm.cert.pem --tls-key /tls/helm.key.pem \
     --set git.url=${GIT_URL} \
     --set git.path=${GIT_PATH} \
     --set git.pollInterval=1m \

@@ -1,0 +1,33 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: flux
+  namespace: ${NAMESPACE}
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: semver:~0.4
+spec:
+  releaseName: flux-${NAMESPACE}
+  chart:
+    git: git@github.com:weaveworks/flux
+    path: chart/flux
+    ref: master
+  values:
+    git.url=${GIT_URL}
+    git.path=${GIT_PATH}
+    git.pollInterval=1m
+    registry.pollInterval=1m
+    helmOperator.create=true
+    helmOperator.createCRD=false
+    helmOperator.git.pollInterval=3m
+    helmOperator.tillerNamespace=${NAMESPACE}
+    helmOperator.allowNamespace=${NAMESPACE}
+    helmOperator.tls.enable=true
+    helmOperator.tls.verify=true
+    helmOperator.tls.caContent= |-
+${CA_CONTENT}
+    helmOperator.tls.hostname=tiller-${NAMESPACE}
+    prometheus.enabled=true
+    rbac.create=false
+    serviceAccount.create=false
+    serviceAccount.name=flux-${NAMESPACE}

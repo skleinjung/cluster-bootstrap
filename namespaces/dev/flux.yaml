@@ -1,0 +1,65 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: flux
+  namespace: dev
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: semver:~0.4
+spec:
+  releaseName: flux-dev
+  chart:
+    git: git@github.com:weaveworks/flux
+    path: chart/flux
+    ref: master
+  values:
+    git.url=git@github.com:skleinjung/thrashplay-deployment
+    git.path=fake_path
+    git.pollInterval=1m
+    registry.pollInterval=1m
+    helmOperator.create=true
+    helmOperator.createCRD=false
+    helmOperator.git.pollInterval=3m
+    helmOperator.tillerNamespace=dev
+    helmOperator.allowNamespace=dev
+    helmOperator.tls.enable=true
+    helmOperator.tls.verify=true
+    helmOperator.tls.caContent= |-
+-----BEGIN CERTIFICATE-----
+MIIFlzCCA3+gAwIBAgIUf+Q1lXPeX+e9UBk2QMtpJSQD+SEwDQYJKoZIhvcNAQEL
+BQAwWzELMAkGA1UEBhMCVVMxEjAQBgNVBAgMCU1pbm5lc290YTEOMAwGA1UEBwwF
+RWFnYW4xEzARBgNVBAoMClRocmFzaHBsYXkxEzARBgNVBAMMCnRpbGxlci1kZXYw
+HhcNMTkwNTAxMjAwMDUxWhcNMzkwNDI2MjAwMDUxWjBbMQswCQYDVQQGEwJVUzES
+MBAGA1UECAwJTWlubmVzb3RhMQ4wDAYDVQQHDAVFYWdhbjETMBEGA1UECgwKVGhy
+YXNocGxheTETMBEGA1UEAwwKdGlsbGVyLWRldjCCAiIwDQYJKoZIhvcNAQEBBQAD
+ggIPADCCAgoCggIBAK9BkWbUOwjr9j5CYlPre4FSjQiqR7rEr1mcvqosBHX5tTIi
+T0jlTBiUmrHE8zMiv5QrgENCVrgnq38daUR+3ARAvSvqBlaM0PY0fnWgN93EJsWB
+JSNEEyZeP7KD/xo9Mm999TNhE7mdk//tshUGw3IPFDPywEobd2Ys77fMC3szagNi
+/oSvulDCza8H+YMDrNXn+5ZHc548Nr63R49s1pbaZLp8TX4qSt+ZPpLTXSl+kNp5
+cu4QGlho2cPls81JrL/fsC4l1dgrBYYGi5bZbeNkpHmr0ZW3fmAb+AslY8GlKmCB
+diMsK5i3PD7+eIaz4frgwH5Pd7nqqJ+0XzzXFhZtrQ2YZo+VVAMwVtJYVoexeCGK
+dimCp8F7fS0OPMWTXcCIHLuUFhutML8omLpzsvx7VBTnEW9Vo1vVaWWycwusPwTw
+7oIsQVXJUWdru77uC2psFChGkP9hQe9Ki8+ADPEeN3Dqh1VK0AR7IoxM/p+aNyj2
+xzbl7z4gr/9/BeVllRXfobZnKFfNIQn7nLjUo+7FHjeV3d1xl42VnOw5KZ3rCXzd
+td+wjER985iRK62rMJi1azy+oxrt7FtjIDkS8CMh5DUnd6qTzjTHZoDiz6rkEJmB
+l34jFQ4Ff61tI5ZWpa456MkYE9ees7pV0QF0+wBq5XD52AjHtiBOkTtqZErVAgMB
+AAGjUzBRMB0GA1UdDgQWBBQurkVwO15gKOVB/ZkiRNoTbABcqjAfBgNVHSMEGDAW
+gBQurkVwO15gKOVB/ZkiRNoTbABcqjAPBgNVHRMBAf8EBTADAQH/MA0GCSqGSIb3
+DQEBCwUAA4ICAQBfAdQLuMWAKSjMx16s4i/nh/mPMf4DbGuJl92r3GMbkvXXLHY8
+ttPGRoRFDI4ueuhjEe5BA9Xx7SvCwPvEdZd06Fara/USr5zQDkOyQGpyHWV44+6q
+e20TqjzqdqlnWp3YrLjCb/nFCOTEhJ74HONy61U5l0KBYaXz0oJeRb5b/9srr9CO
+LVEeTtCOFdblCrWJo2lOzhJ6MzfoYcREm2Nmc7210K54+oKLOjLOIHVzrG41zTGy
+zUkujY5qCvgVaE1tFdUceEoVs3j2bN2guJJTDrJgwpyaH/ASPFmeTdv7JVxdfG2l
+uT1Kg7bE1ju39sQ6Y8E8a+1Blc1qLCP8yld9OLzDz4Y56donEaNBhBaZSY/kXpeV
++AJzzMkdFFoXWxPSUh+3JzaUqv1Bx4+Kj5FWYgfMmrIhKW7BGDi8S69wOC74Momr
+z/UzvULYG8AtaUc6L5ZobN05IlcBihu8CIYhMKWSZhmmyH5dixJin8Zvk+J2YRv5
+OaFfHhsWiLSRV7P95m5alxRDqFTi0O4vPganktLc4orKIS+Hb6isJNJcMCPMU7c3
+/JFI+BvNvipatv1jXkDNyntN2dXfJWvHRt+nRpPcKGlKiRFBSy2OcbJOVOTIYenS
+elWioyl9norw2+sUDYgf5XcKw4IeV/l6z9hYj4Z5rPLGRFN9296JJiE0yA==
+-----END CERTIFICATE-----
+
+    helmOperator.tls.hostname=tiller-dev
+    prometheus.enabled=true
+    rbac.create=false
+    serviceAccount.create=false
+    serviceAccount.name=flux-dev
