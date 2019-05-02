@@ -217,6 +217,8 @@ function generate_helm_yaml() {
         --set registry.pollInterval=1m \
         --set helmOperator.create=true \
         --set helmOperator.createCRD=false \
+        --set helmOperator.allowNamespace=${NAMESPACE} \
+        --set helmOperator.tillerNamespace=${NAMESPACE} \
         --set helmOperator.git.pollInterval=3m \
         --set helmOperator.tls.enable=true \
         --set helmOperator.tls.verify=true \

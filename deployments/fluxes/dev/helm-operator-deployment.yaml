@@ -61,7 +61,8 @@ spec:
         - --charts-sync-interval=3m
         - --update-chart-deps=true
         - --log-release-diffs=false
-        - --tiller-namespace=kube-system
+        - --allow-namespace=dev
+        - --tiller-namespace=dev
         - --tiller-tls-enable=true
         - --tiller-tls-key-path=/etc/fluxd/helm/tls.key
         - --tiller-tls-cert-path=/etc/fluxd/helm/tls.crt
