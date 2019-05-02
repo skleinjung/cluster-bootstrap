@@ -24,3 +24,4 @@ spec:
     collectors:
       namespaces: false
       nodes: false
+      persistentvolumes: false
