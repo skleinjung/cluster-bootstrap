@@ -20,6 +20,7 @@ spec:
       create: false
     serviceAccount:
       create: false
+      name: kube-state-metrics
     collectors:
       namespaces: false
       .nodes: false
