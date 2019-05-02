@@ -17,49 +17,49 @@ spec:
     git.path: fake_path
     git.pollInterval: 1m
     registry.pollInterval: 1m
-    helmOperator.create: true
-    helmOperator.createCRD: false
+    helmOperator.create: "true"
+    helmOperator.createCRD: "false"
     helmOperator.git.pollInterval: 3m
     helmOperator.tillerNamespace: dev
     helmOperator.allowNamespace: dev
-    helmOperator.tls.enable: true
-    helmOperator.tls.verify: true
-    helmOperator.tls.caContent:  |-
------BEGIN CERTIFICATE-----
-MIIFlzCCA3+gAwIBAgIUJdfr1KNEUo4s/4d12o/NvVnqMPcwDQYJKoZIhvcNAQEL
-BQAwWzELMAkGA1UEBhMCVVMxEjAQBgNVBAgMCU1pbm5lc290YTEOMAwGA1UEBwwF
-RWFnYW4xEzARBgNVBAoMClRocmFzaHBsYXkxEzARBgNVBAMMCnRpbGxlci1kZXYw
-HhcNMTkwNTAxMjAzMDI4WhcNMzkwNDI2MjAzMDI4WjBbMQswCQYDVQQGEwJVUzES
-MBAGA1UECAwJTWlubmVzb3RhMQ4wDAYDVQQHDAVFYWdhbjETMBEGA1UECgwKVGhy
-YXNocGxheTETMBEGA1UEAwwKdGlsbGVyLWRldjCCAiIwDQYJKoZIhvcNAQEBBQAD
-ggIPADCCAgoCggIBAMluYiJbMu6fNNVIR7BPauwJl2xCtENeIktKsMlufECC0EzQ
-EF5x4c7McouaGwyHn2Gs0yQYKZz4YVrFExKn059czi589MHU6PxSVJWdp0+SH4ZF
-vK8IFAY4IgLveGfJoH4H74yFlsbTgE6obWxXu70eYburvBcUox80HVQKzkdjNSnd
-OTEfQyBUXW1hX9tRvBQkoF/9MoZ0iGdEpZ/3rrh901Hpe4TpqQv5KGpvSfBx2Xug
-ltJxU4SpBrezn/E5GILo4mGR5WygCGoYrg6vzWuKpBtn4vtpO6hHzLamCbKYd5Wb
-x1yR2a42xfCyVLcS5E2IokY80u2vniwkci2FOP3v2Vo5esMG1MGYQA/uVg9Rzspn
-Qt9bMDpF0PTkwh0DdXcK0jFQ0qIuh9OkAVKnuFFvmc0N4KhNb3BXxnUlqMTaSKx8
-g4QS8AWWSDy55hgr8hVeKJqt6Qm1q60WfavA+Q9eljmWdLfJBj4UzVPACJi0Gsql
-L1iEAm5PC5VMg/5lxOskkcCCDEtPqEj9PlBs4CPqj4B2UvdK6F2ANcN4peGR++A2
-w6St8ZIhFatY7wTZ7KsaK9pCsjdpkhtaEtezApCU0tZcD1bxztoK0Setxv5MXDcL
-3qsmEPy/oorECnr6NqvXq0NO0tN2fmEol0lnWFB+CDa3ujnzQZaf5W4UHboVAgMB
-AAGjUzBRMB0GA1UdDgQWBBQJdrGm3b/0uX2JyZ0rcglmNYCiLTAfBgNVHSMEGDAW
-gBQJdrGm3b/0uX2JyZ0rcglmNYCiLTAPBgNVHRMBAf8EBTADAQH/MA0GCSqGSIb3
-DQEBCwUAA4ICAQBy2i8GvzuKDiKlZw1uzA57vIHdECuezmH/dP/QPJgslARu7f/b
-I/dcL/0sXhmLMN+SSZklGjCTTE3wXOa6MK8wXlnoLP13QDR5MUxqN7A0+CLAQJU2
-kmRY62slH/No5Q+DlGm38xkmxblkrDoGfOIZB00sS/aXVfOlHeM9ly0n0zdzY2TQ
-g+F5Lg7pbP5RHs0GdxrM96aQr5WHdUHxu0zWYL9SRJEpswxye0UrpPrHuT2VtXAj
-5LyPHE4t+A4S+HRiJD2ybt2xnS5wFX6WeKMrLS9sCebXIwINW5gKMgzUzn13Mpyx
-tvOqI/NKYg6oCfRRH7xMXmgbxEtd98bwa1/Qj9vb3i5CfsSlbQfmEDb89WtZ57VQ
-+/yFeEWHRe23y9Eh/7beyOKO/EOF74377tHLDslnKG1S92217sCwYa1OIHF4SPo/
-f2rBMrEFVkbOfFSwZeOHXDEaq3QF5zxvcRT91gbym2wP2EzW4YvuugDnETpC45/o
-GjM//J6Es4gmlCyEasWutvz8GV5RlNAFfa4VITRP7lZjodJ/ySDe+7l+GFE18LsN
-E8ZXjn251/0RNEv8tdYCWP7nwvIVRvgO3Tyaorfe9nhYoEcR05WTQyK78NOJN1JC
-+YpwpXRadkgxHhTC0CX2WCFOWZ7qcGUEM7AMH93wakGpsYwA4xJBoBDEHA==
------END CERTIFICATE-----
+    helmOperator.tls.enable: "true"
+    helmOperator.tls.verify: "true"
+    helmOperator.tls.caContent: |-
+      -----BEGIN CERTIFICATE-----
+      MIIFlzCCA3+gAwIBAgIUKAQYNQwl72hSi20gGVJOLbJHuRcwDQYJKoZIhvcNAQEL
+      BQAwWzELMAkGA1UEBhMCVVMxEjAQBgNVBAgMCU1pbm5lc290YTEOMAwGA1UEBwwF
+      RWFnYW4xEzARBgNVBAoMClRocmFzaHBsYXkxEzARBgNVBAMMCnRpbGxlci1kZXYw
+      HhcNMTkwNTAyMTQzMzExWhcNMzkwNDI3MTQzMzExWjBbMQswCQYDVQQGEwJVUzES
+      MBAGA1UECAwJTWlubmVzb3RhMQ4wDAYDVQQHDAVFYWdhbjETMBEGA1UECgwKVGhy
+      YXNocGxheTETMBEGA1UEAwwKdGlsbGVyLWRldjCCAiIwDQYJKoZIhvcNAQEBBQAD
+      ggIPADCCAgoCggIBAMbKUcYFTN1Gt1QWKV+Zpf23UBE8dD9M8JfeOEIDxl9Gh3p7
+      WAFPv98lXkTCvyGoBADMZLkXFilQaguwaWScD1L/03HHibpE4qV5psewAmGul8R5
+      CmumFlWzw3qc+4wbiJ9ZaaQBuEKyssZ9917A9mHGVzw68Zca8Qcb66cIAQvpDMXm
+      QNVzRDfbADIouhcViSk80NIizysIPPL6cpNfWVMIl/1x5yzdETlLEddkeKbeby+Z
+      gZ/LZQrjH+Xq0uUaox9ORCjGtMycq8r7m4HlmvnDKjO27QgFSCAQ/qR0tk9YQxaP
+      IlWwkvStnyFBKIn+phEPxTojYnmId5dA62EnDYBObu78n8Bed2F5+jSWRG0Uyxm0
+      gaOHAmwVRJ6Cq3PuX5V0pSMXAVUh68OugfAuCgGaeeBuowAAoLB7ubg8j3iINzmj
+      ANPT+WqimX9CjzvoRfcBmX4g2RIxTdsm/cxyLvew8bsMBhhoa1/7hlaiELtp+CXk
+      xv7tc16y4OTROZYFhGrL2oICtTnEjN5eoshqMJFnjK5DbmClbrLu94qQpf83kspc
+      Esb8lHQkU6ETKfJA5zpfqzrLbv9eI41UxQfjswi293GxNkvkgz9qQ7F3hSNYOSXJ
+      JR0MZx6FrY2dPcMEuwgDEf+cOgsXeSYytOkx7Vs6+bZTrFMcGg8+Ka/A1Wc1AgMB
+      AAGjUzBRMB0GA1UdDgQWBBQIZ/S+vue+5vsdFAtxv260Dz+KETAfBgNVHSMEGDAW
+      gBQIZ/S+vue+5vsdFAtxv260Dz+KETAPBgNVHRMBAf8EBTADAQH/MA0GCSqGSIb3
+      DQEBCwUAA4ICAQBVxb/Qgxab4+iK1UA2qjtBV4EBSHhH2OeUmTb7TRMXbiJoyJQx
+      p9tior946p4SSxaThRM0W4KMQIIOVt0Wz5/pVDZsKDM9k5oakG4tq5CWtDXXFwWE
+      pQQhv4tbYoQQFOQlyOF6SkwTu4oYvK//7f8sVoXNwhtKNaVJQRdKK8zq6SYpFn1n
+      UuD7vSYHd1oTNP66B79Ok3se0VPaGTUziCldi9e2RbryQ5cS0v1VgRAuKqXEoq3N
+      gYY9a3lo6rlP6d6Ny+So610fv+zV/BliZRa6Hj1PLHx/tbiBkHfYRBGOw1uw0AAJ
+      Y3VN70cVIMYJalTaXksx7G7YqKfOXSAp/v6yWKYPC6I06316SKLwZwqbC9RKduyj
+      qPzguLMKBgdQKMy5JsgqxcRKChHcWJwLmtonkHzHs4169E9NlilMswkqNpLZEkjp
+      f2+KB2N5wQ5u/mDbCDqz+ZRqfWdxE0kAga3B2frV732i506xDZ6fpio2ZX0ZeKiA
+      Wx+3se1Ic3+Az7y2OJBR4ASdTm+dohfA5gGD/AGfHnMzqC4p9/57l0VRZxaav/R2
+      WCVvboYvd+ojyMA8oPpfBsBa/xcHpSWiXQlkZYjKG1l8svSUnRjL+ak8VyBDmdiM
+      OL0/1M5SI+zKTP3vvx2cR4kUZei9oAzf+e3wsFMcLglyMxhVGWzqL1gNsA==
+      -----END CERTIFICATE-----
 
     helmOperator.tls.hostname: tiller-dev
-    prometheus.enabled: true
-    rbac.create: false
-    serviceAccount.create: false
+    prometheus.enabled: "true"
+    rbac.create: "false"
+    serviceAccount.create: "false"
     serviceAccount.name: flux-dev
