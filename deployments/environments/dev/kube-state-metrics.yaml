@@ -16,8 +16,8 @@ spec:
     version: 1.2.0
   values:
     namespace: dev
-    rbac.create: false
-    serviceAccount.create: false
+    rbac.create: "false"
+    serviceAccount.create: "false"
     serviceAccount.name: kube-state-metrics-dev
-    collectors.namespaces: false
-    collectors.nodes: false
+    collectors.namespaces: "false"
+    collectors.nodes: "false"
