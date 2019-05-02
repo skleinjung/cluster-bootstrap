@@ -1,0 +1,38 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: prometheus
+  namespace: dev
+  labels:
+    chart: prometheus
+  annotations:
+    flux.weave.works/automated: "true"
+    flux.weave.works/tag.chart-image: semver:~8.10
+spec:
+  releaseName: prometheus
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: prometheus
+    version: 8.10.3
+  values:
+    alertmanager:
+      enabled: false
+    kubeStateMetrics:
+      enabled: false
+    nodeExporter:
+      enabled: false
+    pushgateway:
+      enabled: false
+    rbac:
+      create: false
+    server:
+      persistentVolume:
+        size: 40Gi
+    serviceAccounts:
+      alertmanager:
+        create: false
+      kubeStateMetrics:
+        create: false
+      server:
+        create: false
+        name: prometheus
