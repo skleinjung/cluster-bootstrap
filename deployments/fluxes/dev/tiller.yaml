@@ -4,7 +4,7 @@ metadata:
   labels:
     app: helm
     name: tiller
-  name: tiller-deploy-dev
+  name: tiller-deploy
   namespace: dev
 spec:
   replicas: 1
@@ -69,7 +69,7 @@ metadata:
   labels:
     app: helm
     name: tiller
-  name: tiller-deploy-dev
+  name: tiller-deploy
   namespace: dev
 spec:
   ports:
