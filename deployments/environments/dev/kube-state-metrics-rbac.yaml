@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: kube-state-metrics-dev
+  name: kube-state-metrics
   namespace: dev
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: Role
 metadata:
-  name: kube-state-metrics-dev
+  name: kube-state-metrics
   namespace: dev
 rules:
   - apiGroups: [""]
@@ -86,12 +86,12 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
 metadata:
-  name: kube-state-metrics-dev
+  name: kube-state-metrics-binding
   namespace: dev
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: kube-state-metrics-dev
+  name: kube-state-metrics
 subjects:
-  - name: kube-state-metrics-dev
+  - name: kube-state-metrics
     kind: ServiceAccount

@@ -1,7 +1,7 @@
 apiVersion: flux.weave.works/v1beta1
 kind: HelmRelease
 metadata:
-  name: kube-state-metrics-dev
+  name: kube-state-metrics
   namespace: dev
   labels:
     chart: kube-state-metrics
@@ -9,7 +9,7 @@ metadata:
     flux.weave.works/automated: "true"
     flux.weave.works/tag.chart-image: semver:~1.2
 spec:
-  releaseName: kube-state-metrics-dev
+  releaseName: kube-state-metrics
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
     name: kube-state-metrics
