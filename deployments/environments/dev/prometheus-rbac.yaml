@@ -31,10 +31,6 @@ rules:
       - get
       - list
       - watch
-  - nonResourceURLs:
-      - "/metrics"
-    verbs:
-      - get
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
