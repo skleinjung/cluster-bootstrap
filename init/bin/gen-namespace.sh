@@ -221,6 +221,7 @@ function generate_helm_yaml() {
         --set helmOperator.tls.enable=true \
         --set helmOperator.tls.verify=true \
         --set helmOperator.tls.caContent="$(cat output/tls/ca.cert.pem)" \
+        --set helmOperator.tls.hostname=tiller-${NAMESPACE} \
         --set prometheus.enabled=true \
         --set rbac.create=false \
         --set serviceAccount.create=false \

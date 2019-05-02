@@ -67,6 +67,7 @@ spec:
         - --tiller-tls-cert-path=/etc/fluxd/helm/tls.crt
         - --tiller-tls-verify=true
         - --tiller-tls-ca-cert-path=/etc/fluxd/helm-ca/ca.crt
+        - --tiller-tls-hostname=tiller-dev
         resources:
           requests:
             cpu: 50m
