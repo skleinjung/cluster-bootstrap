@@ -14,7 +14,7 @@ creates an 'output' folder with two sub-folders:
   tls: TLS certificates and keys needed to connect to the Tiller server remotely
   yaml: the YAML files containing the deployments for the namespace
 
-usage: init_namespace.sh --namespace=<namespace> <ARGS>
+usage: gen-namespace.sh --namespace=<namespace> <ARGS>
 
 Prerequisites:
 
@@ -26,6 +26,7 @@ Prerequisites:
 The following arguments can be specified:
   --country: the (two-letter) country to use when generating TLS certificates
   --flux-version: the version of Flux to install (defaults to master)
+  --git-branch: git branch containing deployment information (defaults to master)
   --git-path: path inside the git repository containing deployment information
   --git-url: URL of the git repository containing deployment information
   --helm-domain: common name for the helm server (defaults to helm-<namespace>)
@@ -51,10 +52,6 @@ function process_arguments() {
     case $i in
         --namespace=*)
         NAMESPACE="${i#*=}"
-        shift # past argument=value
-        ;;
-        --locality=*)
-        LOCALITY="${i#*=}"
         shift # past argument=value
         ;;
         --country=*)
@@ -89,6 +86,10 @@ function process_arguments() {
         GIT_URL="${i#*=}"
         shift # past argument=value
         ;;
+        --git-branch=*)
+        GIT_BRANCH="${i#*=}"
+        shift # past argument=value
+        ;;
         --git-path=*)
         GIT_PATH="${i#*=}"
         shift # past argument=value
@@ -108,6 +109,20 @@ function process_arguments() {
         ;;
     esac
     done
+
+    # default values
+    if [[ -z "$FLUX_VERSION" ]]; then
+        FLUX_VERSION=master
+    fi
+    if [[ -z "$GIT_BRANCH" ]]; then
+        GIT_BRANCH=master
+    fi
+    if [[ -z "$TILLER_DOMAIN" ]]; then
+        TILLER_DOMAIN=tiller-${NAMESPACE}
+    fi
+    if [[ -z "$HELM_DOMAIN" ]]; then
+        HELM_DOMAIN=helm-${NAMESPACE}
+    fi
 
     if [[ "${HELP}" = "true" ]]; then
         show_usage
@@ -152,13 +167,6 @@ function process_arguments() {
 
 function generate_tls_keys() {
     echo Generating TLS keys...
-    # default values
-    if [[ -z "$TILLER_DOMAIN" ]]; then
-        TILLER_DOMAIN=tiller-${NAMESPACE}
-    fi
-    if [[ -z "$HELM_DOMAIN" ]]; then
-        HELM_DOMAIN=helm-${NAMESPACE}
-    fi
 
     TILLER_COMMON_NAME=$TILLER_DOMAIN
     HELM_COMMON_NAME=$HELM_DOMAIN
@@ -184,7 +192,7 @@ function generate_templated_yaml() {
     CA_CONTENT=`awk 'NF {sub(/\r/, ""); printf "%s\\\\n",$0;}' output/tls/ca.cert.pem`
 
     mkdir -p output/yaml
-    cp templates/*.yaml output/yaml
+    cp templates/namespace/*.yaml output/yaml
 
     find output/yaml -name *.yaml -exec sed -i -e "s/\${NAMESPACE}/${NAMESPACE}/" \{\} \;
     find output/yaml -name *.yaml -exec sed -i -e "s,\${GIT_URL},${GIT_URL}," \{\} \;
@@ -194,11 +202,6 @@ function generate_templated_yaml() {
 
 function generate_helm_yaml() {
     echo Generating yaml files from Helm charts...
-
-    # default values
-    if [[ -z "$FLUX_VERSION" ]]; then
-        FLUX_VERSION=master
-    fi
 
     rm -rf output/tmp
     mkdir -p output/tmp/helm
@@ -228,7 +231,7 @@ function generate_helm_yaml() {
 \  namespace: ${NAMESPACE}" \;
 
     cp output/tmp/helm/flux/templates/*.yaml output/yaml
-    rm -rf tmp
+    rm -rf output/tmp
 }
 
 function generate_secrets() {
@@ -266,5 +269,5 @@ rm -rf output
 mkdir output
 generate_tls_keys
 generate_templated_yaml
-#generate_helm_yaml
+generate_helm_yaml
 generate_secrets
