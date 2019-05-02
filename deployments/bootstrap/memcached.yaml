@@ -3,11 +3,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flux-memcached
-  namespace: flux
+  name: flux-master-memcached
+  namespace: flux-master
   labels:
     app: flux-memcached
-    release: flux
+    chart: flux-0.9.2
+    release: flux-master
+    heritage: Tiller
 spec:
   replicas: 1
   strategy:
@@ -15,12 +17,12 @@ spec:
   selector:
     matchLabels:
       app: flux-memcached
-      release: flux
+      release: flux-master
   template:
     metadata:
       labels:
         app: flux-memcached
-        release: flux
+        release: flux-master
     spec:
       containers:
       - name: memcached
@@ -40,12 +42,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: flux-memcached
-  namespace: flux
+  name: flux-master-memcached
+  namespace: flux-master
   labels:
     app: flux-memcached
-    chart: flux-0.9.1
-    release: flux
+    chart: flux-0.9.2
+    release: flux-master
     heritage: Tiller
 spec:
   ports:
@@ -55,4 +57,4 @@ spec:
       name: memcached
   selector:
     app: flux-memcached
-    release: flux
+    release: flux-master

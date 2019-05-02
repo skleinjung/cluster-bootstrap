@@ -3,8 +3,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: flux-kube-config
-  namespace: flux
+  name: flux-master-kube-config
+  namespace: flux-master
 data:
   config: |
     apiVersion: v1

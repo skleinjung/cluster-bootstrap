@@ -1,14 +1,14 @@
 ---
 # Source: flux/templates/rbac.yaml
 apiVersion: rbac.authorization.k8s.io/v1beta1
-kind: Role
+kind: ClusterRole
 metadata:
-  name: flux-dev
-  namespace: dev
+  name: flux-master
+  namespace: flux-master
   labels:
     app: flux
     chart: flux-0.9.2
-    release: flux-dev
+    release: flux-master
     heritage: Tiller
 rules:
   - apiGroups:
@@ -17,21 +17,27 @@ rules:
       - '*'
     verbs:
       - '*'
+  - nonResourceURLs:
+      - '*'
+    verbs:
+      - '*'
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
-kind: RoleBinding
+kind: ClusterRoleBinding
 metadata:
-  name: flux-dev
-  namespace: dev
+  name: flux-master
+  namespace: flux-master
   labels:
     app: flux
     chart: flux-0.9.2
-    release: flux-dev
+    release: flux-master
     heritage: Tiller
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: flux-dev
+  kind: ClusterRole
+  name: flux-master
+  namespace: flux-master
 subjects:
-  - name: flux-dev
+  - name: flux-master
+    namespace: "kube-system"
     kind: ServiceAccount
