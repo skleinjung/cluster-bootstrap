@@ -11,9 +11,9 @@ metadata:
 spec:
   releaseName: kube-state-metrics-dev
   chart:
-    git: git@github.com:helm/charts
-    path: stable/kube-state-metrics
-    ref: 1.2.0
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: stable/kube-state-metrics
+    version: 1.2.0
   values:
     namespace: dev
     collectors.nodes: false
