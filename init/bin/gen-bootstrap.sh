@@ -124,6 +124,9 @@ function generate_helm_yaml() {
         --set registry.pollInterval=1m \
         --set helmOperator.create=false \
         --set prometheus.enabled=true \
+        --set rbac.create=false \
+        --set serviceAccount.create=false \
+        --set serviceAccount.name=flux-master \
         output/tmp/flux/chart/flux
 
     find output/tmp/helm/flux/templates -name *.yaml -exec sed \{\} -i -e "/^\  name: .*/ a\
