@@ -175,4 +175,4 @@ generate_templated_yaml
 
 helm init --client-only
 generate_flux_yaml
-generate_prometheus_yaml
+#generate_prometheus_yaml
