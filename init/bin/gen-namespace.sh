@@ -191,8 +191,10 @@ function generate_templated_yaml() {
 
     CA_CONTENT=`awk 'NF {sub(/\r/, ""); printf "%s\\\\n",$0;}' output/tls/ca.cert.pem`
 
-    mkdir -p output/yaml
+    mkdir -p output/yaml/tiller
     cp templates/namespace/*.yaml output/yaml
+    cp templates/namespace/tiller/*.yaml output/yaml/tiller
+
 
     find output/yaml -name *.yaml -exec sed -i -e "s/\${NAMESPACE}/${NAMESPACE}/" \{\} \;
     find output/yaml -name *.yaml -exec sed -i -e "s,\${GIT_URL},${GIT_URL}," \{\} \;
@@ -233,7 +235,8 @@ function generate_helm_yaml() {
     find output/tmp/helm/flux/templates -name *.yaml -exec sed \{\} -i -e "/^\  name: .*/ a\
 \  namespace: ${NAMESPACE}" \;
 
-    cp output/tmp/helm/flux/templates/*.yaml output/yaml
+    mkdir -p output/yaml/flux
+    cp output/tmp/helm/flux/templates/*.yaml output/yaml/flux
     rm -rf output/tmp
 }
 
@@ -246,6 +249,8 @@ function generate_secrets() {
         KUBESEAL_ARGS="--cert output/tmp/kubeseal-cert.pem"
     fi
 
+    mkdir -p output/yaml/secrets
+
     kubectl create secret generic tiller-secret \
         -n ${NAMESPACE} \
         --dry-run=true \
@@ -254,7 +259,7 @@ function generate_secrets() {
         --from-file=tls.crt=output/tls/tiller.cert.pem \
         --from-file=tls.key=output/tls/tiller.key.pem \
         | kubeseal --format yaml ${KUBESEAL_ARGS} \
-        > output/yaml/tiller-secret.yaml
+        > output/yaml/secrets/tiller-secret.yaml
 
     kubectl create secret generic helm-client-certs \
         -n ${NAMESPACE} \
@@ -263,7 +268,7 @@ function generate_secrets() {
         --from-file=tls.crt=output/tls/helm.cert.pem \
         --from-file=tls.key=output/tls/helm.key.pem \
         | kubeseal --format yaml ${KUBESEAL_ARGS} \
-        > output/yaml/helm-client-certs.yaml
+        > output/yaml/secrets/helm-client-certs.yaml
 }
 
 process_arguments $@

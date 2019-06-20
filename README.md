@@ -1,8 +1,10 @@
 # Using the Cluster Bootstrap Tools
 - [Bootstrapping a New Cluster](#bootstrapping-a-new-cluster)
 - [Recreating or Replicating a Cluster](#recreating-a-cluster)
+- Creating a Namespace
 
-## Example Workflow
+## Example Workflow & Usage
+TBD
 
 ## Bootstrapping a New Cluster
 
@@ -143,11 +145,27 @@ The following additional arguments can be specified to customize the new namespa
 - `--kubeseal-cert`: path to the certificate to use for sealing secrets; if not specified, it will be retrieved from the cluster
 - `--tiller-domain`: common name for the tiller server (defaults to `tiller-<namespace>`)
 
-~~This will create bootstrap YAML files that can be used to deploy the following:~~
+This will create an `output` directory with two sub-directories:
+- `tls`: this folder contains the TLS certificate data needed to connect to the namespace Tiller
+- `yaml`: this folder contains the YAML files needed to initialize the new namespace
 
-~~The Git information (URL, branch, and path) that you specify will be used to configure Flux.
-The Flux operator will then monitor that Git location for any changes, and automatically apply any
-Kubernetes YAML files it finds. See the Flux documentation for more details.~~
+**TLS Folder**
+
+The contents of the TLS folder are only needed if you intend to manually connect to the namespace's
+Tiller to perform Helm operations. Flux is automatically configured with the needed certificates. If
+you do not intend to manually invoke Helm, you can disregard this folder. If you want to connect to
+Helm, save these files somewhere safe. (Do not put them in git, as they contain secret information.)
+
+**YAML Folder**
+
+The contents of the yaml folder will be used by the master Flux to initialize the new namespace. For
+this to happen, these files should be checked into git at the path being monitored by the master Flux.
+This path will have been set via the `--git-path` argument to the `gen-bootstrap.sh` script executed
+above.
+
+Note that once the Flux deployment for the new namespace is completed, the namespace-specific Flux
+operator's git deploy key will have to be configured as described in "*Authorize Flux to Access Git*",
+above.
 
 ## Troubleshooting
 TBD
