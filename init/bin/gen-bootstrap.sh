@@ -98,8 +98,10 @@ function process_arguments() {
 function generate_templated_yaml() {
     echo Generating templated yaml files...
 
-    mkdir -p output/yaml
-    cp templates/cluster/*.yaml output/yaml
+    mkdir -p output/yaml/sealed-secrets
+    mkdir -p output/yaml/flux
+    cp templates/cluster/sealed-secrets/*.yaml output/yaml/sealed-secrets
+    cp templates/cluster/flux/*.yaml output/yaml/flux
 
     find output/yaml -name *.yaml -exec sed -i -e "s,\${GIT_URL},${GIT_URL}," \{\} \;
     find output/yaml -name *.yaml -exec sed -i -e "s,\${GIT_BRANCH},${GIT_BRANCH}," \{\} \;
