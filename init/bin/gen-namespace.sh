@@ -186,6 +186,13 @@ function generate_tls_keys() {
     openssl x509 -req -CA output/tls/ca.cert.pem -CAkey output/tls/ca.key.pem -CAcreateserial -in output/tls/helm.csr.pem -out output/tls/helm.cert.pem  -days 3650
 }
 
+function generate_ssh_keys() {
+    echo Generating SSH keys...
+
+    mkdir -p output/keys
+    ssh-keygen -f output/keys/flux-deploy-key -t rsa -b 4096 -N ""
+}
+
 function generate_templated_yaml() {
     echo Generating templated yaml files...
 
@@ -194,7 +201,6 @@ function generate_templated_yaml() {
     mkdir -p output/yaml/tiller
     cp templates/namespace/*.yaml output/yaml
     cp templates/namespace/tiller/*.yaml output/yaml/tiller
-
 
     find output/yaml -name *.yaml -exec sed -i -e "s/\${NAMESPACE}/${NAMESPACE}/" \{\} \;
     find output/yaml -name *.yaml -exec sed -i -e "s,\${GIT_URL},${GIT_URL}," \{\} \;
@@ -216,6 +222,7 @@ function generate_helm_yaml() {
         --set git.url=${GIT_URL} \
         --set git.path=${GIT_PATH} \
         --set git.pollInterval=1m \
+        --set git.secretName=flux-${NAMESPACE}-deploy-key \
         --set registry.pollInterval=1m \
         --set helmOperator.create=true \
         --set helmOperator.createCRD=false \
@@ -269,6 +276,14 @@ function generate_secrets() {
         --from-file=tls.key=output/tls/helm.key.pem \
         | kubeseal --format yaml ${KUBESEAL_ARGS} \
         > output/yaml/secrets/helm-client-certs.yaml
+
+    kubectl create secret generic flux-${NAMESPACE}-deploy-key \
+        -n ${NAMESPACE} \
+        --dry-run=true \
+        -o yaml \
+        --from-file=identity=output/keys/flux-deploy-key \
+        | kubeseal --format yaml ${KUBESEAL_ARGS} \
+        > output/yaml/secrets/flux-${NAMESPACE}-deploy-key.yaml
 }
 
 process_arguments $@
@@ -276,6 +291,9 @@ process_arguments $@
 rm -rf output
 mkdir output
 generate_tls_keys
+generate_ssh_keys
 generate_templated_yaml
 generate_helm_yaml
 generate_secrets
+
+rm -rf output/tmp

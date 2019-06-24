@@ -125,6 +125,7 @@ function generate_flux_yaml() {
         --set git.branch=${GIT_BRANCH} \
         --set git.path=${GIT_PATH} \
         --set git.pollInterval=1m \
+        --set git.secretName=flux-master-deploy-key \
         --set registry.pollInterval=1m \
         --set helmOperator.create=false \
         --set prometheus.enabled=true \
