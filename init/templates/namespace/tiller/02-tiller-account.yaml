@@ -8,19 +8,6 @@ metadata:
   namespace: ${NAMESPACE}
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
-kind: Role
-metadata:
-  labels:
-    app: helm
-    name: tiller
-  name: tiller-${NAMESPACE}
-  namespace: ${NAMESPACE}
-rules:
-  - apiGroups: ['*']
-    resources: ['*']
-    verbs: ['*']
----
-apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
 metadata:
   labels:
@@ -30,8 +17,8 @@ metadata:
   namespace: ${NAMESPACE}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: tiller-${NAMESPACE}
+  kind: ClusterRole
+  name: release-operator
 subjects:
   - kind: ServiceAccount
     name: tiller-${NAMESPACE}
