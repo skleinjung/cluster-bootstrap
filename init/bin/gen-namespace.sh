@@ -198,9 +198,8 @@ function generate_templated_yaml() {
 
     CA_CONTENT=`awk 'NF {sub(/\r/, ""); printf "%s\\\\n",$0;}' output/tls/ca.cert.pem`
 
-    mkdir -p output/yaml/tiller
+    mkdir -p output/yaml
     cp templates/namespace/*.yaml output/yaml
-    cp templates/namespace/tiller/*.yaml output/yaml/tiller
 
     find output/yaml -name *.yaml -exec sed -i -e "s/\${NAMESPACE}/${NAMESPACE}/" \{\} \;
     find output/yaml -name *.yaml -exec sed -i -e "s,\${GIT_URL},${GIT_URL}," \{\} \;
@@ -236,7 +235,7 @@ function generate_helm_yaml() {
         --set prometheus.enabled=true \
         --set rbac.create=false \
         --set serviceAccount.create=false \
-        --set serviceAccount.name=flux-${NAMESPACE} \
+        --set serviceAccount.name=${NAMESPACE}-release-operator \
         output/tmp/flux/chart/flux
 
     find output/tmp/helm/flux/templates -name *.yaml -exec sed \{\} -i -e "/^\  name: .*/ a\
