@@ -9,7 +9,7 @@ metadata:
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
 metadata:
-  name: flux-${NAMESPACE}
+  name: flux-${NAMESPACE}-release-operator
   namespace: ${NAMESPACE}
   labels:
     app: flux
@@ -20,6 +20,20 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: release-operator
+subjects:
+  - name: ${NAMESPACE}-release-operator
+    kind: ServiceAccount
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: RoleBinding
+metadata:
+  name: flux-${NAMESPACE}-namespace-viewer
+  labels:
+    app: flux
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: namespace-viewer
 subjects:
   - name: ${NAMESPACE}-release-operator
     kind: ServiceAccount
