@@ -37,3 +37,4 @@ roleRef:
 subjects:
   - name: ${NAMESPACE}-release-operator
     kind: ServiceAccount
+    namespace: ${NAMESPACE}
