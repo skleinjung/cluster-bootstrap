@@ -5,5 +5,41 @@
   "repository": "git@github.com:skleinjung/cluster-bootstrap.git",
   "author": "Sean Kleinjung <skleinjung@gmail.com>",
   "license": "UNLICENSED",
-  "private": true
+  "private": true,
+  "scripts": {
+    "exec": "ts-node",
+    "lint": "eslint . --ext .ts,.js"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,js}": [
+      "yarn eslint . --ext .ts,.js --fix",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "ts-node": "^8.4.1",
+    "typescript": "^3.6.3"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.138",
+    "@types/node": "^12.7.5",
+    "@typescript-eslint/eslint-plugin": "^2.3.0",
+    "@typescript-eslint/parser": "^2.3.0",
+    "eslint": "^6.4.0",
+    "eslint-plugin-flowtype": "^4.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "husky": "^3.0.5",
+    "lint-staged": "^9.3.0",
+    "patch-package": "^6.2.0",
+    "postinstall-postinstall": "^2.0.0"
+  }
 }

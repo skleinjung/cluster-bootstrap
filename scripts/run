@@ -88,4 +88,4 @@ function validate {
 }
 
 validate $@
-docker run -i --rm --name cluster-bootstrap-script -v "$PWD":/usr/src/app -w /usr/src/app node:10 node $1
+docker run -i --rm --name cluster-bootstrap-script -v "$PWD":/usr/src/app -w /usr/src/app node:10 npm --silent run exec $1
