@@ -2,9 +2,10 @@
 * text=auto
 
 # These files should have specific line endings
+Dockerfile  text eol=lf
 *.sh	text eol=lf
 *.bat	text eol=crlf
 
 # These files are binary and should be left untouched
 # (binary is a macro for -text -diff)
-*.jpeg	binary	
+*.jpeg	binary

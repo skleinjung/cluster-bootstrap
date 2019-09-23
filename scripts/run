@@ -1,0 +1,91 @@
+#!/bin/bash
+
+set -e
+
+# disable Mingw path mangling on windows
+export MSYS_NO_PATHCONV=1
+
+function show_usage() {
+    cat <<EOF
+
+Executes a node script from the 'scripts' folder in a Docker container.
+
+usage: ./run <script_name> [<script_args>]
+
+Prerequisites:
+
+  - docker must be installed and on the path
+
+The following arguments can be specified:
+  script_args: arguments to pass to the script
+  script_name: the name of the script to run, relevant to 'scripts'
+
+EOF
+
+    log_error "$1"
+    exit 1
+}
+
+function log_error {
+    echo -e "\e[31m[ERROR] ${1}\e[0m"
+}
+
+function check_docker {
+    set +e
+    docker version --format '{{.Server.Version}}' > /dev/null 2> /dev/null
+    result=$?
+    set -e
+
+    if [[ "${result}" -ne 0 ]]; then
+        show_usage "Docker is not available on the path."
+    fi
+}
+
+function check_script {
+    if [[ ! -e "${1}" ]]; then
+        show_usage "Script '${1}' not found."
+    fi
+}
+
+function process_arguments {
+    HELP=false
+
+    firstRun=true
+
+    for i in "$@"
+    do
+    if [[ "$firstRun" = "true" ]]; then
+      firstRun=false
+      continue
+    fi
+
+    case ${i} in
+        --help)
+        HELP=true
+        shift
+        ;;
+        *)
+        UNKNOWN_OPTIONS=true
+        show_usage "Unknown option: ${i}"
+        shift
+        ;;
+    esac
+    done
+
+    # default values
+    if [[ "${HELP}" = "true" ]]; then
+        show_usage
+    fi
+    if [[ -z "$1" ]]; then
+        show_usage "Missing argument: <script_name>"
+    fi
+}
+
+function validate {
+    process_arguments $@
+    check_script $1
+    check_docker
+}
+
+validate $@
+docker run -i --rm --name cluster-bootstrap-script -v "$PWD":/usr/src/app -w /usr/src/app node:10 node $1

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/cluster-sandbox.iml" filepath="$PROJECT_DIR$/cluster-sandbox.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cluster-bootstrap.iml" filepath="$PROJECT_DIR$/cluster-bootstrap.iml" />
     </modules>
   </component>
 </project>

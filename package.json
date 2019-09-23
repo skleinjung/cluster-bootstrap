@@ -1,0 +1,9 @@
+{
+  "name": "cluster-bootstrap",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "git@github.com:skleinjung/cluster-bootstrap.git",
+  "author": "Sean Kleinjung <skleinjung@gmail.com>",
+  "license": "UNLICENSED",
+  "private": true
+}
